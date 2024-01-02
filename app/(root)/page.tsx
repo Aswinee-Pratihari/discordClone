@@ -1,12 +1,26 @@
-import { ModeToggle } from "@/components/ModeToggle";
-import { Button } from "@/components/ui/button";
+import db from "@/lib/db";
+import { InitialProfile } from "@/lib/initialProfile";
+import { redirect } from "next/navigation";
+import React from "react";
 
-export default function Home() {
-  return (
-    <>
-      <p className="text-indigo-600 text-3xl font-bold">Discord Clone</p>
-      <Button>Button</Button>
-      <ModeToggle />
-    </>
-  );
-}
+const SetupPage = async () => {
+  const profile = await InitialProfile();
+
+  //finding server
+  const server = await db.server.findFirst({
+    where: {
+      members: {
+        some: {
+          profileId: profile.id,
+        },
+      },
+    },
+  });
+
+  if (server) {
+    return redirect(`/servers/${server.id}`);
+  }
+  return <div>SetupPage</div>;
+};
+
+export default SetupPage;
