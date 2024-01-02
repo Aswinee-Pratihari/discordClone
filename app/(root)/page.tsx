@@ -1,3 +1,4 @@
+import InitialModal from "@/components/modal/InitialModal";
 import db from "@/lib/db";
 import { InitialProfile } from "@/lib/initialProfile";
 import { redirect } from "next/navigation";
@@ -20,7 +21,12 @@ const SetupPage = async () => {
   if (server) {
     return redirect(`/servers/${server.id}`);
   }
-  return <div>SetupPage</div>;
+  return (
+    // <div className="flex justify-center items-center h-full">
+
+    <InitialModal />
+    // </div>
+  );
 };
 
 export default SetupPage;
