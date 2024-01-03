@@ -122,7 +122,7 @@ const InitialModal = () => {
               />
             </div>
             <DialogFooter className="bg-gray-100 p-2">
-              <Button type="submit" variant="primary">
+              <Button type="submit" variant="primary" disabled={isLoading}>
                 Submit
               </Button>
             </DialogFooter>
