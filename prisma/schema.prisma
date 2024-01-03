@@ -30,13 +30,13 @@ model Profile {
 }
 
 model Server {
-  id         String  @id @default(auto()) @map("_id") @db.ObjectId
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
   name       String
-  imageurl   String  @db.String
-  inviteCode String  @db.String
-  body       String
-  profile    Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
-  profileId  String  @db.ObjectId
+  imageurl   String @db.String
+  inviteCode String @db.String
+
+  profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  profileId String  @db.ObjectId
 
   members  Member[]
   Channels Channel[]
